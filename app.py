@@ -46,7 +46,7 @@ def send_requests_to_users(driver):
             print("Found button")
             all_connect_buttons.append(button)
             #pag.click(441, 666)
-    for connect_button in all_connect_buttons:
+    for connect_button in all_connect_buttons[:6]:
         print("Clicking button")
         connect_button.click()
     print("Done !")
@@ -62,11 +62,12 @@ def zoom_out(n):
 def  take_a_screenshot(driver):
     loc_time = time.localtime()
     loc_time = time.strftime("%Y-%m-%d_%H-%M-%S", loc_time)
-    cwd = os.path.dirname(__file__) + r"/screenshots/" + loc_time + r".png"
+    cwd = os.path.dirname(__file__) + r"/screenshots/"
+    file = loc_time + r".png"
     ss = driver.get_screenshot_as_png()
     try:
         os.makedirs(cwd, exist_ok=True)
-        with open(cwd, "wb") as ss_file: # changes to how the file is opened
+        with open(cwd + file, "wb") as ss_file: # changes to how the file is opened
             ss_file.write(ss)
             print(f"Screenshot saved at {cwd}")
     except Exception as err:
@@ -82,7 +83,8 @@ if __name__ == "__main__":
     driver.get(url)
     login_to_linkedin(driver)
     goto_network_page(driver,network_url)
-    zoom_out(6)
+    zoom_out(4)
     send_requests_to_users(driver)
+    time.sleep(5)
     take_a_screenshot(driver)
     driver.quit()
