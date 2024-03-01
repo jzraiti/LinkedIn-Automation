@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import pyautogui as pag
 import time
 import os
+import random
 
 def login_to_linkedin(driver):
     with open(os.path.dirname(__file__) + r'\secrets.txt', 'r') as file:
@@ -46,7 +47,11 @@ def send_requests_to_users(driver):
             print("Found button")
             all_connect_buttons.append(button)
             #pag.click(441, 666)
-    for connect_button in all_connect_buttons[:6]:
+
+    #add randomness to try to fool the bot detection
+    random_num = random.randint(1, 6)
+
+    for connect_button in all_connect_buttons[:random_num]:
         print("Clicking button")
         connect_button.click()
     print("Done !")

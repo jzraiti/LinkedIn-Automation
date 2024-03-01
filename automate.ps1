@@ -1,0 +1,1 @@
+& C:/ProgramData/Anaconda3/envs/LinkedInBotFinal/python.exe c:/Users/jraiti/src/repos/LinkedInAutomation/LinkedIn-Automation/app.py
